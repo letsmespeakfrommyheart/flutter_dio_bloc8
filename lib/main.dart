@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'List Users',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const ListUserScreen());
+      debugShowCheckedModeBanner: false,
+      title: 'List Users',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const ListUserScreen(),
+    );
   }
 }

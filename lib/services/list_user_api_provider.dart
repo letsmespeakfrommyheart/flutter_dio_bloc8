@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:flutter_dio_bloc8/model/list_user_response.dart';
 
 class ListUserProvider {
   late Dio _dio;
@@ -13,24 +16,27 @@ class ListUserProvider {
     initializeInterceptors();
   }
 
-  Future<Response> getRequest() async {
+  Future<List<User>> getRequest() async {
     Response response;
 
-    try {
-      response = await _dio.get(url);
-    } on DioError catch (e) {
-      print(e.message);
-      throw Exception(e.message);
+    response = await _dio.get(url);
+    if (response.statusCode == 200) {
+      final List<User> userJson = response.data;
+      return userJson;
+    } else {
+      throw Exception('Error fetching users');
     }
-    return response;
   }
 
   initializeInterceptors() {
     _dio.interceptors.add(InterceptorsWrapper(onError: (error, handler) {
+      log('error ${error.message}');
       return handler.next(error);
     }, onRequest: (request, handler) {
+      log('request: ${request.data}');
       return handler.next(request);
     }, onResponse: (response, handler) {
+      log('response: ${response.data}');
       return handler.next(response);
     }));
   }
