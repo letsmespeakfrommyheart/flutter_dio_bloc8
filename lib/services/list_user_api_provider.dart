@@ -21,8 +21,8 @@ class ListUserProvider {
 
     response = await _dio.get(url);
     if (response.statusCode == 200) {
-      final List<User> userJson = response.data;
-      return userJson;
+      final usersList = ListUserResponse.fromJson(response.data);
+      return usersList.users;
     } else {
       throw Exception('Error fetching users');
     }

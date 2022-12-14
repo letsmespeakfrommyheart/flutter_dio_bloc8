@@ -4,8 +4,8 @@ import 'package:flutter_dio_bloc8/bloc/list_user_bloc.dart';
 import 'dart:developer';
 import 'package:flutter_dio_bloc8/bloc/list_user_state.dart';
 
-class UserList extends StatelessWidget {
-  const UserList({Key? key}) : super(key: key);
+class UserListView extends StatelessWidget {
+  const UserListView({Key? key}) : super(key: key);
 
   @override
   @override
@@ -13,10 +13,6 @@ class UserList extends StatelessWidget {
     return BlocConsumer<ListUserBloc, ListUserState>(
       listener: ((context, state) {
         log(state.toString());
-        if (state is ListUserLoadedState) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text('Users is Loaded')));
-        }
       }),
       builder: (context, state) {
         if (state is ListUserLoadingState) {

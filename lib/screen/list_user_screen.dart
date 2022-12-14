@@ -7,8 +7,6 @@ import 'package:flutter_dio_bloc8/widgets/user_listview.dart';
 class ListUserScreen extends StatelessWidget {
   const ListUserScreen({Key? key}) : super(key: key);
 
-  // final userRepository = ListUserRepository();
-
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
@@ -18,8 +16,10 @@ class ListUserScreen extends StatelessWidget {
                 ListUserBloc(userRepository: context.read<ListUserRepository>())
                   ..add(ListUserLoadindEvent()),
             child: Scaffold(
-              appBar: AppBar(title: const Text("Get list of users")),
-              body: const UserList(),
-            )));
+                appBar: AppBar(
+                    title: const Text("Get list of users",
+                        style: TextStyle(color: Colors.black)),
+                    backgroundColor: Colors.grey.shade300),
+                body: const UserListView())));
   }
 }

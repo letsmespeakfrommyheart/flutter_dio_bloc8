@@ -4,4 +4,4 @@ abstract class ListUserEvent {}
 
 class ListUserLoadindEvent extends ListUserEvent {}
 
-class NoInternetEvent extends ListUserEvent {}
+class ListUserErrorEvent extends ListUserEvent {}
